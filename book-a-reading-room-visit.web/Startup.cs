@@ -32,8 +32,8 @@ namespace book_a_reading_room_visit.web
             {
                 options.ModelBinderProviders.Insert(0, new EnumModelBinderProvider());
             });
-            services.AddDefaultAWSOptions(Configuration.GetAWSOptions());
-            services.AddDataProtection().PersistKeysToAWSSystemsManager("/KBS-Web/DataProtection");
+            //services.AddDefaultAWSOptions(Configuration.GetAWSOptions());
+            //services.AddDataProtection().PersistKeysToAWSSystemsManager("/KBS-Web/DataProtection");
 
             services.AddHttpClient<IAvailabilityService, AvailabilityService>(c =>
             {
@@ -47,7 +47,7 @@ namespace book_a_reading_room_visit.web
                 c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             });
 
-            var wcfEndPoint = Environment.GetEnvironmentVariable("AdvanceOrderServiceEndPoint");
+            var wcfEndPoint = Configuration.GetSection("Services:AdvanceServiceEndPoint").Value;
             services.AddSingleton(s => new ChannelFactory<IAdvancedOrderService>(new BasicHttpBinding(), new EndpointAddress(wcfEndPoint)));
 
             services.AddScoped<AvailabilityService>();

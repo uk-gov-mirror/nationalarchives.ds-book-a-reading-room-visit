@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "book-a-reading-room-visit.web", "book-a-reading-room-visit.web\book-a-reading-room-visit.web.csproj", "{7DF609F6-2CC2-41A9-A0B9-2657950E710F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "book-a-reading-room-visit.web", "book-a-reading-room-visit.web\book-a-reading-room-visit.web.csproj", "{7DF609F6-2CC2-41A9-A0B9-2657950E710F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "book-a-reading-room-visit.api", "book-a-reading-room-visit.api\book-a-reading-room-visit.api.csproj", "{B0B2DC0A-CFFF-4DB8-850E-8B8E199BD36E}"
 EndProject

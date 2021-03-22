@@ -26,11 +26,11 @@ namespace book_a_reading_room_visit.api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDefaultAWSOptions(Configuration.GetAWSOptions());
-            services.AddDataProtection().PersistKeysToAWSSystemsManager("/KBS-API/DataProtection");
+            //services.AddDefaultAWSOptions(Configuration.GetAWSOptions());
+            //services.AddDataProtection().PersistKeysToAWSSystemsManager("/KBS-API/DataProtection");
 
             services.AddDbContext<BookingContext>(opt =>
-              opt.UseSqlServer(Environment.GetEnvironmentVariable("KewBookingConnection"))
+              opt.UseSqlServer(Configuration.GetConnectionString("KewBookingConnection"))
                  .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
             services.AddMemoryCache();

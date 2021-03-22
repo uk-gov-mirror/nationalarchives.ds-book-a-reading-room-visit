@@ -11,14 +11,14 @@ namespace book_a_reading_room_visit.web.Controllers
     public class BookingController : Controller
     {
         private readonly IBookingService _bookingService;
-        private IAdvancedOrderService _advancedOrderService;
+        //private IAdvancedOrderService _advancedOrderService;
         private readonly IAvailabilityService _availabilityService;
 
-        public BookingController(IBookingService bookingService, IAvailabilityService availabilityService, ChannelFactory<IAdvancedOrderService> channelFactory)
+        public BookingController(IBookingService bookingService, IAvailabilityService availabilityService)
         {
             _bookingService = bookingService;
             _availabilityService = availabilityService;
-            _advancedOrderService = channelFactory.CreateChannel();
+            //_advancedOrderService = channelFactory.CreateChannel();
         }
 
         [HttpPost]
@@ -35,18 +35,18 @@ namespace book_a_reading_room_visit.web.Controllers
                 VisitEndDate = bookingViewModel.BookingEndDate
             };
 
-            var result = await _bookingService.CreateBookingAsync(model);
+            //var result = await _bookingService.CreateBookingAsync(model);
 
-            if (!result.IsSuccess)
-            {
-                var routeValues = new { 
-                    bookingtype = bookingViewModel.BookingType.ToStringURL(), 
-                    seattype = bookingViewModel.SeatType.ToStringURL(),
-                    errorcode = ErrorCode.seat_unavailable
-                };
-                return RedirectToAction("Availability", "Home", routeValues);
-            }
-            bookingViewModel.BookingReference = result.BookingReference;
+            //if (!result.IsSuccess)
+            //{
+            //    var routeValues = new { 
+            //        bookingtype = bookingViewModel.BookingType.ToStringURL(), 
+            //        seattype = bookingViewModel.SeatType.ToStringURL(),
+            //        errorcode = ErrorCode.seat_unavailable
+            //    };
+            //    return RedirectToAction("Availability", "Home", routeValues);
+            //}
+            //bookingViewModel.BookingReference = result.BookingReference;
 
             return View(bookingViewModel);
         }
@@ -66,56 +66,72 @@ namespace book_a_reading_room_visit.web.Controllers
         [HttpPost]
         public async Task<IActionResult> BookingConfirmation(BookingViewModel bookingViewModel)
         {
-            if (bookingViewModel.ReaderTicket == 0 ||
-                !_advancedOrderService.IsReaderTicketValid(bookingViewModel.ReaderTicket.ToString()))
-            {
-                ModelState.AddModelError("Ticket", Constants.Valid_Ticket_Required);
-            }
-            if (string.IsNullOrWhiteSpace(bookingViewModel.FirstName))
-            {
-                ModelState.AddModelError("Firstname", Constants.Firstname_Required);
-            }
-            if (string.IsNullOrWhiteSpace(bookingViewModel.LastName))
-            {
-                ModelState.AddModelError("Lastname", Constants.Lastname_Required);
-            }
-            if (string.IsNullOrWhiteSpace(bookingViewModel.Phone) && string.IsNullOrWhiteSpace(bookingViewModel.Email))
-            {
-                ModelState.AddModelError("Phone", Constants.Phone_Or_Email_Required);
-            }
+            //if (bookingViewModel.ReaderTicket == 0 ||
+            //    !_advancedOrderService.IsReaderTicketValid(bookingViewModel.ReaderTicket.ToString()))
+            //{
+            //    ModelState.AddModelError("Ticket", Constants.Valid_Ticket_Required);
+            //}
 
-            if (!ModelState.IsValid)
-            {
-                return View("SecureBooking", bookingViewModel);
-            }
+            //if (string.IsNullOrWhiteSpace(bookingViewModel.FirstName))
+            //{
+            //    ModelState.AddModelError("Firstname", Constants.Firstname_Required);
+            //}
+            //if (string.IsNullOrWhiteSpace(bookingViewModel.LastName))
+            //{
+            //    ModelState.AddModelError("Lastname", Constants.Lastname_Required);
+            //}
+            //if (string.IsNullOrWhiteSpace(bookingViewModel.Phone) && string.IsNullOrWhiteSpace(bookingViewModel.Email))
+            //{
+            //    ModelState.AddModelError("Phone", Constants.Phone_Or_Email_Required);
+            //}
 
-            var model = new BookingModel
-            {
-                BookingReference = bookingViewModel.BookingReference,
-                ReaderTicket = bookingViewModel.ReaderTicket,
-                FirstName = bookingViewModel.FirstName,
-                LastName = bookingViewModel.LastName,
-                Email = bookingViewModel.Email,
-                Phone = bookingViewModel.Phone,
-                IsAcceptTsAndCs = bookingViewModel.AcceptTsAndCs,
-                IsAcceptCovidCharter = bookingViewModel.AcceptCovidCharter,
-                IsNoFaceCovering = bookingViewModel.NoFaceCovering,
-            };
 
-            var result = await _bookingService.ReserveSpaceAsync(model);
+            //var visitorDetails = _advancedOrderService.GetVisitorDetailsByTicketNo(bookingViewModel.ReadingTicket.ToString());
+            //if (visitorDetails?.ReaderTicket == null)
+            //{
+            //    ModelState.AddModelError("Ticket", Constants.Valid_Ticket_Required);
+            //}
 
-            if (!result.IsSuccess)
-            {
-                var routeValues = new
-                {
-                    bookingtype = bookingViewModel.BookingType.ToStringURL(),
-                    seattype = bookingViewModel.SeatType.ToStringURL(),
-                    errorcode = ErrorCode.reserved_time_expired
-                };
-                return RedirectToAction("Availability", "Home", routeValues);
-            }
-            bookingViewModel.CompleteByDate = result.CompleteByDate;
-            bookingViewModel.SeatNumber = result.SeatNumber;
+            //if (!ModelState.IsValid)
+            //{
+            //    return View("SecureBooking", bookingViewModel);
+            //}
+
+
+            //var model = new BookingModel
+            //{
+            //    BookingReference = bookingViewModel.BookingReference,
+            //    ReaderTicket = bookingViewModel.ReaderTicket,
+            //    FirstName = bookingViewModel.FirstName,
+            //    LastName = bookingViewModel.LastName,
+            //    Email = bookingViewModel.Email,
+            //    Phone = bookingViewModel.Phone,
+            //    IsAcceptTsAndCs = bookingViewModel.AcceptTsAndCs,
+            //    IsAcceptCovidCharter = bookingViewModel.AcceptCovidCharter,
+            //    IsNoFaceCovering = bookingViewModel.NoFaceCovering,
+            //};
+
+            //var result = await _bookingService.ReserveSpaceAsync(model);
+
+            //bookingViewModel.FirstName = visitorDetails.Firstname;
+            //bookingViewModel.LastName = visitorDetails.Lastname;
+            //bookingViewModel.Phone = visitorDetails.Phone;
+
+           //var result = await _bookingService.ReserveSpaceAsync(bookingViewModel);
+
+
+            //if (!result.IsSuccess)
+            //{
+            //    var routeValues = new
+            //    {
+            //        bookingtype = bookingViewModel.BookingType.ToStringURL(),
+            //        seattype = bookingViewModel.SeatType.ToStringURL(),
+            //        errorcode = ErrorCode.reserved_time_expired
+            //    };
+            //    return RedirectToAction("Availability", "Home", routeValues);
+            //}
+            //bookingViewModel.CompleteByDate = result.CompleteByDate;
+            //bookingViewModel.SeatNumber = result.SeatNumber;
 
             return View(bookingViewModel);
         }
