@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "book-a-reading-room-visit.d
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "book-a-reading-room-visit.test", "book-a-reading-room-visit.test\book-a-reading-room-visit.test.csproj", "{790ECB90-897F-4A92-850F-E24BA1FA250E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "book-a-reading-room-visit.model", "book-a-reading-room-visit.model\book-a-reading-room-visit.model.csproj", "{61C5F9A3-B5EE-4987-B4C1-144366D651D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "book-a-reading-room-visit.model", "book-a-reading-room-visit.model\book-a-reading-room-visit.model.csproj", "{61C5F9A3-B5EE-4987-B4C1-144366D651D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "book-a-reading-room-visit.svc", "book-a-reading-room-win-svc\book-a-reading-room-visit.svc.csproj", "{8DD7B273-AE0F-4426-8B66-38E4E36724A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{61C5F9A3-B5EE-4987-B4C1-144366D651D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61C5F9A3-B5EE-4987-B4C1-144366D651D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61C5F9A3-B5EE-4987-B4C1-144366D651D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DD7B273-AE0F-4426-8B66-38E4E36724A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DD7B273-AE0F-4426-8B66-38E4E36724A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DD7B273-AE0F-4426-8B66-38E4E36724A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DD7B273-AE0F-4426-8B66-38E4E36724A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
